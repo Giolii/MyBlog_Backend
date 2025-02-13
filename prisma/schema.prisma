@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int   @id @default(autoincrement())   // Unique identifier for each user
+  username  String  @unique
+  email     String   @unique                // Email must be unique
+  password  String                          // Will store hashed passwords
+  posts     Post[]
+  comments  Comment[]
+  createdAt DateTime @default(now())        // Automatically set when user is created
+  updatedAt DateTime @updatedAt             // Automatically updated when user is modified
+  admin     Boolean @default(false)
+}
+
+
+model Post {
+  id        Int    @id @default(autoincrement())
+  title     String
+  userId    Int    // Foreign key to User
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content   String
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  publishedAt DateTime? 
+  published Boolean   @default(false)
+}
+
+model Comment {
+  id        Int    @id @default(autoincrement())
+  title     String?
+  userId    Int    // Foreign key to User
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId    Int
+  post      Post @relation(fields:[postId],references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
