@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
@@ -13,8 +15,8 @@ require("./config/passport");
 app.use(passport.initialize());
 const corsOptions = {
   origin: [
-    import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173",
-    import.meta.env.VITE_FRONTEND_URL2 || "http://localhost:3000",
+    process.env.VITE_FRONTEND_URL || "http://localhost:5173",
+    process.env.VITE_FRONTEND_URL2 || "http://localhost:3000",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
