@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const express = require("express");
 const passport = require("passport");
 const authRoutes = require("./routes/authRoutes");
@@ -15,8 +13,8 @@ require("./config/passport");
 app.use(passport.initialize());
 const corsOptions = {
   origin: [
-    process.env.FRONTEND_URL || "http://localhost:5173",
-    process.env.FRONTEND_URL2 || "http://localhost:3000",
+    import.meta.env.FRONTEND_URL || "http://localhost:5173",
+    import.meta.env.FRONTEND_URL2 || "http://localhost:3000",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
@@ -40,14 +38,6 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-
-testConnection().then((connected) => {
-  if (connected) {
-    console.log("Database connection verified");
-  } else {
-    console.log("Failed to verify database connection");
-  }
-});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
