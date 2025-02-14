@@ -20,7 +20,7 @@ const corsOptions = {
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true, // If you're using cookies/sessions
+  credentials: true,
   maxAge: 86400,
 };
 app.use(cors(corsOptions));
@@ -40,6 +40,15 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
+testConnection().then((connected) => {
+  if (connected) {
+    console.log("Database connection verified");
+  } else {
+    console.log("Failed to verify database connection");
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
