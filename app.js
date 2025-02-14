@@ -13,8 +13,8 @@ require("./config/passport");
 app.use(passport.initialize());
 const corsOptions = {
   origin: [
-    import.meta.env.FRONTEND_URL || "http://localhost:5173",
-    import.meta.env.FRONTEND_URL2 || "http://localhost:3000",
+    import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173",
+    import.meta.env.VITE_FRONTEND_URL2 || "http://localhost:3000",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
