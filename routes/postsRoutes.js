@@ -4,9 +4,9 @@ const router = express.Router();
 const passport = require("passport");
 const authenticateJWT = passport.authenticate("jwt", { session: false });
 
-const prisma = new PrismaClient();
 // Utility function to create artificial delay
 const simulateDelay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
   try {
