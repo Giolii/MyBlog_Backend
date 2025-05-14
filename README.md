@@ -1,9 +1,11 @@
 # MyBlog_Backend
 
 <div align="center">
-  <img src="https://via.placeholder.com/150" width="150" alt="MyBlog API Logo">
+  <img src="https://i.postimg.cc/C1HmdGgn/blog.jpg" width="500" alt="MyBlog API Logo">
   <h3>RESTful API backend for my blog platform</h3>
 </div>
+
+Frontend Repository: [BlogAdmin](https://github.com/Giolii/MyBlog_Admin)
 
 ## 📋 Overview
 
